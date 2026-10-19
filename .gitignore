@@ -1,0 +1,40 @@
+# Python cache
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local attendance and alert records
+attendance/
+alerts/*.csv
+
+# Video files and datasets
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.zip
+
+# Trained model weights and checkpoints
+*.pt
+*.pth
+*.onnx
+*.h5
+*.keras
+*.pkl
+*.joblib
+
+# Face recognition training data
+datasets/
+face_data/
+faces/
+dataset/
+
+# Local face recognition model
+models/face_model.yml

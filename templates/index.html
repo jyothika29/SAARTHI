@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#142b3b">
+    <meta name="description"
+          content="SAARTHI childcare safety monitoring dashboard">
+
+    <title>SAARTHI | Safety Monitoring</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+
+            <div>
+                <h2>SAARTHI</h2>
+                <span>Safety Monitoring</span>
+            </div>
+        </div>
+
+        <p class="nav-heading">WORKSPACE</p>
+
+        <nav aria-label="Main navigation">
+
+            <a href="#dashboard" class="nav-item active">
+                <span aria-hidden="true">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#monitoring" class="nav-item">
+                <span aria-hidden="true">▣</span>
+                <span>Live Monitoring</span>
+            </a>
+
+            <a href="#attendance" class="nav-item">
+                <span aria-hidden="true">◷</span>
+                <span>Attendance</span>
+            </a>
+
+            <a href="#safety" class="nav-item">
+                <span aria-hidden="true">◇</span>
+                <span>Safety Events</span>
+            </a>
+
+            <a href="#fire" class="nav-item">
+                <span aria-hidden="true">♧</span>
+                <span>Fire &amp; Smoke</span>
+            </a>
+
+            <a href="#history" class="nav-item">
+                <span aria-hidden="true">☷</span>
+                <span>Alert History</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-indicator">
+                <span class="status-dot"
+                      aria-hidden="true"></span>
+
+                <div>
+                    <strong>Application online</strong>
+                    <small>Local environment</small>
+                </div>
+            </div>
+
+            <a href="#settings" class="nav-item">
+                <span aria-hidden="true">⚙</span>
+                <span>Settings</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main content -->
+    <main class="main-content" id="dashboard">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">CHILDCARE SAFETY PLATFORM</p>
+                <h1>Dashboard</h1>
+            </div>
+
+            <div class="topbar-actions">
+
+                <label for="themeSelect">Appearance</label>
+
+                <select id="themeSelect"
+                        aria-label="Choose appearance">
+
+                    <option value="light">☀ Light</option>
+                    <option value="dark">☾ Dark</option>
+                    <option value="system">▣ System</option>
+
+                </select>
+
+                <div class="profile" aria-label="SAARTHI">
+                    S
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Welcome section -->
+        <section class="welcome">
+
+            <div>
+                <h2>Safety overview</h2>
+
+                <p>
+                    Monitor system readiness, review events and manage
+                    childcare safety operations.
+                </p>
+            </div>
+
+            <span class="status-pill">
+                <span class="status-dot"
+                      aria-hidden="true"></span>
+
+                Dashboard available
+            </span>
+
+        </section>
+
+
+        <!-- System overview -->
+        <section class="section-heading">
+
+            <div>
+                <h2>System overview</h2>
+                <p>Current application status</p>
+            </div>
+
+        </section>
+
+
+        <section class="stats-grid">
+
+            <!-- Camera status -->
+            <article class="stat-card">
+
+                <div class="stat-top">
+                    <span>Camera status</span>
+                    <span class="stat-icon blue"
+                          aria-hidden="true">▣</span>
+                </div>
+
+                <h3 id="cameraStatus">Not connected</h3>
+
+                <p id="cameraDescription">
+                    Live camera is stopped
+                </p>
+
+            </article>
+
+
+            <!-- Attendance -->
+            <article class="stat-card">
+
+                <div class="stat-top">
+                    <span>Attendance today</span>
+                    <span class="stat-icon green"
+                          aria-hidden="true">◷</span>
+                </div>
+
+                <h3 id="attendanceCount">Loading...</h3>
+
+                <p id="attendanceMessage">Loading today's attendance...</p>
+
+            </article>
+
+
+            <!-- Safety events -->
+            <article class="stat-card">
+
+                <div class="stat-top">
+                    <span>Safety events</span>
+                    <span class="stat-icon orange"
+                          aria-hidden="true">◇</span>
+                </div>
+
+                <h3 id="eventCount">0</h3>
+
+                <p>Events recorded by this dashboard</p>
+
+            </article>
+
+
+            <!-- AI status -->
+            <article class="stat-card">
+
+                <div class="stat-top">
+                    <span>AI monitoring</span>
+                    <span class="stat-icon purple"
+                          aria-hidden="true">⌁</span>
+                </div>
+
+                <h3 id="monitorStatus">Not connected</h3>
+
+                <p>Person detection integration</p>
+
+            </article>
+
+        </section>
+
+
+        <!-- Live camera and recent activity -->
+        <section class="content-grid">
+
+            <!-- Camera panel -->
+            <article class="panel" id="monitoring">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Live monitoring</h2>
+                        <p>Camera feed and person detection</p>
+                    </div>
+
+                    <span class="badge neutral"
+                          id="cameraBadge">
+                        Not connected
+                    </span>
+
+                </div>
+
+
+                <!-- Camera display -->
+                <div class="camera-view">
+
+                    <img
+                        id="cameraFeed"
+                        alt="Live webcam feed with AI person detection"
+                        hidden
+                    >
+
+                    <div class="camera-placeholder"
+                         id="cameraPlaceholder">
+
+                        <div class="camera-symbol"
+                             aria-hidden="true">▣</div>
+
+                        <h3>Camera is not running</h3>
+
+                        <p>
+                            Start monitoring to view the live camera feed.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Camera controls -->
+                <div class="camera-controls">
+
+                    <button
+                        type="button"
+                        id="startCamera"
+                        class="button-primary">
+
+                        Start Monitoring
+
+                    </button>
+
+                    <button
+                        type="button"
+                        id="stopCamera"
+                        class="button-secondary"
+                        disabled>
+
+                        Stop Monitoring
+
+                    </button>
+
+                    <span id="cameraMessage"
+                          role="status"
+                          aria-live="polite">
+
+                        Camera is stopped.
+
+                    </span>
+
+                </div>
+
+
+                <!-- Detection information -->
+                <div class="detection-summary">
+
+                    <div>
+                        <span class="summary-label">
+                            People detected
+                        </span>
+
+                        <strong id="peopleCount">—</strong>
+                    </div>
+
+                    <div>
+                        <span class="summary-label">
+                            Detection model
+                        </span>
+
+                        <strong>YOLOv8 Pose</strong>
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Recent activity -->
+            <article class="panel" id="history">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Recent activity</h2>
+                        <p>Latest recorded events</p>
+                    </div>
+
+                    <span class="badge neutral">
+                        Preview
+                    </span>
+
+                </div>
+
+
+                <div class="empty-state"
+                     id="activityEmptyState">
+
+                    <div class="empty-symbol"
+                         aria-hidden="true">☷</div>
+
+                    <h3>No events to display</h3>
+
+                    <p>
+                        Recorded events will appear here when
+                        event logging is connected.
+                    </p>
+
+                </div>
+
+                <div id="activityList"
+                     class="activity-list"
+                     aria-live="polite">
+                </div>
+
+            </article>
+
+        </section>
+        <!-- Video Upload and Analysis -->
+<section class="section-heading">
+    <div>
+        <h2>Video Upload &amp; Analysis</h2>
+        <p>Analyse prerecorded videos for potential safety incidents</p>
+    </div>
+</section>
+
+<section class="panel" id="videoAnalysis">
+
+    <div class="panel-header">
+        <div>
+            <h2>Analyse a Video</h2>
+            <p>Upload a video for AI-assisted safety analysis</p>
+        </div>
+
+        <span class="badge neutral" id="uploadBadge">
+            Ready
+        </span>
+    </div>
+
+    <form id="videoUploadForm" enctype="multipart/form-data">
+
+        <div class="upload-controls">
+            <label for="videoFile">
+                Select a video file (MP4, AVI, MOV)
+            </label>
+
+            <input
+                type="file"
+                id="videoFile"
+                name="video"
+                accept=".mp4,.avi,.mov,.mkv,video/*"
+                required
+            >
+
+            <button
+                type="submit"
+                id="analyseVideoButton"
+                class="button-primary">
+                Analyse Video
+            </button>
+        </div>
+
+    </form>
+
+    <div id="uploadedVideoContainer" hidden>
+
+        <h3>Selected Video</h3>
+
+        <video
+            id="uploadedVideoPreview"
+            controls
+            preload="metadata"
+            style="width: 100%; max-height: 360px; border-radius: 8px;">
+        </video>
+
+    </div>
+
+    <div class="analysis-status" aria-live="polite">
+
+        <h3>Analysis Status</h3>
+
+        <p id="videoAnalysisMessage">
+            Select a video to begin.
+        </p>
+
+        <div id="videoAnalysisProgressContainer" hidden>
+            <progress
+                id="videoAnalysisProgress"
+                value="0"
+                max="100">
+            </progress>
+
+            <span id="videoAnalysisProgressText">0%</span>
+        </div>
+
+    </div>
+
+    <div class="detection-summary">
+
+        <div>
+            <span class="summary-label">Analysis Result</span>
+            <strong id="videoDetectionResult">Not analysed</strong>
+        </div>
+
+        <div>
+            <span class="summary-label">Alert Status</span>
+            <strong id="videoAlertStatus">No alert</strong>
+        </div>
+
+    </div>
+
+    <div
+        id="videoAlertMessage"
+        role="alert"
+        aria-live="assertive"
+        hidden>
+    </div>
+
+</section>
+
+
+        <!-- Monitoring modules -->
+        <section class="section-heading modules-heading">
+
+            <div>
+                <h2>Monitoring modules</h2>
+
+                <p>
+                    Integration status of project components
+                </p>
+            </div>
+
+        </section>
+
+
+        <section class="modules-grid">
+
+            <!-- Attendance -->
+            <article class="module-card" id="attendance">
+
+                <span class="module-icon green"
+                      aria-hidden="true">◷</span>
+
+                <div>
+                    <h3>Attendance</h3>
+
+                    <p>
+                        Face recognition and attendance records
+                    </p>
+
+                    <span class="badge neutral" id="attendanceBadge">
+                        Integration pending
+                    </span>
+                </div>
+
+            </article>
+
+
+            <!-- Safety -->
+            <article class="module-card" id="safety">
+
+                <span class="module-icon orange"
+                      aria-hidden="true">◇</span>
+
+                <div>
+                    <h3>Safety monitoring</h3>
+
+                    <p>
+                        Potentially unsafe activities flagged
+                        for human review
+                    </p>
+
+                    <span class="badge neutral">
+                        Integration pending
+                    </span>
+                </div>
+
+            </article>
+
+
+            <!-- Fire -->
+            <article class="module-card" id="fire">
+
+                <span class="module-icon red"
+                      aria-hidden="true">♧</span>
+
+                <div>
+                    <h3>Fire &amp; smoke</h3>
+
+                    <p>
+                        Potential fire and smoke detection
+                    </p>
+
+                    <span class="badge neutral">
+                        Integration pending
+                    </span>
+                </div>
+
+            </article>
+
+
+            <!-- Settings -->
+            <article class="module-card" id="settings">
+
+                <span class="module-icon blue"
+                      aria-hidden="true">⚙</span>
+
+                <div>
+                    <h3>System settings</h3>
+
+                    <p>
+                        Appearance and application preferences
+                    </p>
+
+                    <span class="badge success">
+                        Available
+                    </span>
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+
+            <span>
+                SAARTHI · Smart AI-based Safety &amp; Alert System
+                for Child Care Centers
+            </span>
+
+            <span>Prototype environment</span>
+
+        </footer>
+
+    </main>
+
+
+    <!-- Dashboard JavaScript -->
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"
+            defer></script>
+
+</body>
+</html>
